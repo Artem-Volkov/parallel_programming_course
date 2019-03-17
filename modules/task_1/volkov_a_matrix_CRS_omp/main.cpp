@@ -5,7 +5,7 @@
 #include <vector>
 #include <ctime>
 #include <iomanip>
-#include <string.h>
+#include <string>
 
 #define FIRST_CMT 1
 #define SECOND_CMT 2
@@ -188,6 +188,7 @@ double** Create_and_init_matr(int size) {
         matr[i][j] = std::rand() % 100 - 50;
     return matr;
   }
+  return 0;
 }
 double** seq_MultiplicationDenseMatrix(double** M_1, double** M_2, int Size) {
   double** M_Rez = Create_and_init_matr(Size);
