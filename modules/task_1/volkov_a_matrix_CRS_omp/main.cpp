@@ -87,7 +87,7 @@ CRSMatrix Transposing(CRSMatrix CMT) {
     int start = CMT.RowIndex[i];
     int end = CMT.RowIndex[i + 1];
     int Column = i;
-    int Value;
+    double Value;
     int CMTcolumn, TCMTindex;
     for (int j = start; j < end; j++) {
       Value = CMT.Values[j];
