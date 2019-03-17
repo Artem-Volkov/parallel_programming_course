@@ -1,7 +1,9 @@
-message(STATUS "Task 1")
+set(PROJECT_NAME "volkov_a_matrix_CRS_omp")
 
-SUBDIRLIST(subdirs ${CMAKE_CURRENT_SOURCE_DIR})
-
-foreach(subd ${subdirs})
-  add_subdirectory(${subd})
-endforeach()
+if ( USE_OMP )
+    project( ${PROJECT_NAME} )
+    message( STATUS "-- " ${PROJECT_NAME} )
+    add_executable( ${PROJECT_NAME} main.cpp )
+else( USE_OMP )
+    message( STATUS "-- ${PROJECT_NAME} - NOT BUILD!"  )
+endif( USE_OMP )
