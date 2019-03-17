@@ -267,21 +267,26 @@ bool CheckSeqAndSimpleRezults(CRSMatrix CMT_1,
 }
 int main(int argc, char* argv[]) {
   CRSMatrix CMT_1, CMT_2, TCMT_2, CMT_Rez;
-  int Size;
-  int NonzeroSize;
+  int Size = 0;
+  int NonzeroSize = 0;
   double seq_start_time = 0.0;
   double seq_end_time = 0.0;
   double seq_work_time = 0.0;
-  std::cout << "Enter size of matrix:   ";
-  std::cin >> Size;
-  std::cout << std::endl;
-  std::cout << "Enter the number of nonzero elements in the string:   ";
-  std::cin >> NonzeroSize;
+
+  if (argc > 2) {
+  Size = atoi(argv[1]);
+  NonzeroSize = atoi(argv[2]);
+  } else {
+  Size = 6;
+  NonzeroSize = 2;
+  }
   std::cout << std::endl << std::endl;
   if (NonzeroSize > Size || Size < 1 || NonzeroSize < 0) {
     std::cout << "Error" << std::endl;
     return 0;
   }
+  std::cout << "Size of matrix = " << Size << "x" << Size << std::endl;
+  std::cout << "Not NULL elements in ROW = " << NonzeroSize << std::endl;
   InitCRSMatr(FIRST_CMT, Size, NonzeroSize, &CMT_1);
   InitCRSMatr(SECOND_CMT, Size, NonzeroSize, &CMT_2);
   TCMT_2 = Transposing(CMT_2);
