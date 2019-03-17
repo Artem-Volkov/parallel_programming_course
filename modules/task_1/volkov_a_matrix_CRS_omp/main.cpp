@@ -5,6 +5,7 @@
 #include <vector>
 #include <ctime>
 #include <iomanip>
+#include <string.h>
 
 #define FIRST_CMT 1
 #define SECOND_CMT 2
@@ -70,7 +71,7 @@ CRSMatrix Transposing(CRSMatrix CMT) {
   int TSize = CMT.Size;
   int TNonzeroSize = CMT.NonzeroSize;
   CreateCRSMatrix(TSize, TNonzeroSize, &TCMT);
-  memset(TCMT.RowIndex, 0, sizeof(int) * (TSize + 1));
+  memset(TCMT.RowIndex, 0, (TSize + 1)* sizeof(int));
   for (int i = 0; i < TNonzeroSize; i++)
     TCMT.RowIndex[CMT.Columns[i] + 1]++;
   int offset = 0;
@@ -132,7 +133,7 @@ CRSMatrix seq_MultiplicationMatrCRS(CRSMatrix CMT_1, CRSMatrix TCMT_2) {
     Row.push_back(NzSize);
   }
   CreateCRSMatrix(Size, Value.size(), &CMT_Rez);
-  for (int j = 0; j < Value.size(); j++) {
+  for (size_t j = 0; j < Value.size(); j++) {
     CMT_Rez.Values[j] = Value[j];
     CMT_Rez.Columns[j] = Column[j];
   }
@@ -181,19 +182,10 @@ double** Create_and_init_matr(int size) {
   for (int i = 0; i < size; i++)
     matr[i] = new double[size];
   srand((unsigned)time(NULL));
-  if (size < 3) {
-    for (int i = 0; i < size; i++)
-      for (int j = 0; j < size; j++) {
-        std::cout << "Enter element at the [" << i << ", " <<
-          j << "] position:" << std::endl;
-        std::cin >> matr[i][j];
-        std::cout << std::endl;
-      }
-  } else {
+  if (size > 0) {
     for (int i = 0; i < size; i++)
       for (int j = 0; j < size; j++)
         matr[i][j] = std::rand() % 100 - 50;
-
     return matr;
   }
 }
@@ -270,7 +262,7 @@ bool CheckSeqAndSimpleRezults(CRSMatrix CMT_1,
     return false;
   }
 }
-void main(int argc, char* argv[]) {
+int main(int argc, char* argv[]) {
   CRSMatrix CMT_1, CMT_2, TCMT_2, CMT_Rez;
   int Size;
   int NonzeroSize;
@@ -285,7 +277,7 @@ void main(int argc, char* argv[]) {
   std::cout << std::endl << std::endl;
   if (NonzeroSize > Size || Size < 1 || NonzeroSize < 0) {
     std::cout << "Error" << std::endl;
-    return;
+    return 0;
   }
   InitCRSMatr(FIRST_CMT, Size, NonzeroSize, &CMT_1);
   InitCRSMatr(SECOND_CMT, Size, NonzeroSize, &CMT_2);
@@ -302,5 +294,6 @@ void main(int argc, char* argv[]) {
   DeleteCRSMatrix(&CMT_1);
   DeleteCRSMatrix(&CMT_2);
   DeleteCRSMatrix(&CMT_Rez);
+  return 0;
 }
 
