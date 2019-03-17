@@ -5,7 +5,9 @@
 #include <vector>
 #include <ctime>
 #include <iomanip>
-#include <string>
+#include <cstring>
+#include <cstdio>
+#include <cstdlib>
 
 #define FIRST_CMT 1
 #define SECOND_CMT 2
