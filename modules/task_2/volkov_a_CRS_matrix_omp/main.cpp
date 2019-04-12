@@ -193,7 +193,6 @@ CRSMatrix pp_MultiplicationMatrCRS(CRSMatrix CMT_1,
     CRSMatrix CMT_rez;
     int Size = CMT_1.Size;
     int i, j;
-    int chunk = 10;
 
     int NzSize = 0;
     std::vector<double>* Value = new std::vector<double>[Size];
@@ -540,5 +539,4 @@ int main(int argc, char* argv[]) {
             " Rezults of PP and Seq versions are not identical "
             << std::endl;
     }
-    system("pause");
 }
