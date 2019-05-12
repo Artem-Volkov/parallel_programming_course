@@ -238,7 +238,7 @@ CRSMatrix seq_MultiplicationMatrCRS(CRSMatrix CMT_1,
 
     CreateCRSMatrix(Size, Value.size(), &CMT_Rez);
 
-    for (int j = 0; j < Value.size(); j++) {
+    for (size_t j = 0; j < Value.size(); j++) {
         CMT_Rez.Values[j] = Value[j];
         CMT_Rez.Columns[j] = Column[j];
     }
@@ -515,7 +515,7 @@ int main(int argc, char* argv[]) {
 
     if (NonzeroSize > Size || Size < 1 || NonzeroSize < 0) {
     std::cout << "Error" << std::endl;
-        return;
+    return 0;
     }
 
     InitCRSMatr(FIRST_CMT, Size, NonzeroSize, &CMT_1);
@@ -574,5 +574,5 @@ int main(int argc, char* argv[]) {
     DeleteCRSMatrix(&TCMT_2);
     DeleteCRSMatrix(&seq_CMT_Rez);
 
-    system("pause");
+    return 0;
 }
