@@ -46,9 +46,6 @@ class Multiplicator {
         int begin = r.begin();
         int end = r.end();
         int Size = CMT_1.Size;
-
-        int i, j, k;
-
         for (int i = begin; i < end; i++) {
             for (int j = 0; j < Size; j++) {
                 double ScalarMult = 0;
@@ -491,7 +488,7 @@ bool CheckSeqAndPPRezults(CRSMatrix CMT_1, CRSMatrix CMT_2) {
 }
 
 
-void main(int argc, char* argv[]) {
+int main(int argc, char* argv[]) {
     int Size = 6;
     int NonzeroSize = 2;
     int num_of_threads = 2;
