@@ -1,6 +1,6 @@
 ﻿  // Copyright 2019 Volkov Artem
 
-#include <tbb\tbb.h>
+#include <tbb/tbb.h>
 #include <omp.h>
 #include <iostream>
 #include <cstring>
