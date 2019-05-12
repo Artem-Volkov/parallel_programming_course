@@ -1,4 +1,4 @@
-﻿// Copyright 2019 Volkov Artem
+﻿  // Copyright 2019 Volkov Artem
 
 #include <tbb\tbb.h>
 #include <omp.h>
